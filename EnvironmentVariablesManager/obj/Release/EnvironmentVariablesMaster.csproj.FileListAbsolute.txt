@@ -8,3 +8,6 @@ C:\Users\Doer\Documents\Visual Studio 2013\Projects\EnvironmentVariablesManager\
 C:\Users\Doer\Documents\Visual Studio 2013\Projects\EnvironmentVariablesManager\EnvironmentVariablesManager\obj\Release\EnvironmentVariablesMaster.pdb
 C:\Users\Doer\Documents\Visual Studio 2013\Projects\EnvironmentVariablesManager\EnvironmentVariablesManager\obj\Release\EnvironmentVariablesMaster.Properties.Resources.resources
 C:\Users\Doer\Documents\Visual Studio 2013\Projects\EnvironmentVariablesManager\EnvironmentVariablesManager\obj\Release\EnvironmentVariablesMaster.csprojResolveAssemblyReference.cache
+C:\Users\Doer\Documents\GitHub\EnvironmentVariableMaster\EnvironmentVariablesManager\bin\Release\EnvironmentVariablesMaster.exe.config
+C:\Users\Doer\Documents\GitHub\EnvironmentVariableMaster\EnvironmentVariablesManager\obj\Release\EnvironmentVariablesMaster.exe
+C:\Users\Doer\Documents\GitHub\EnvironmentVariableMaster\EnvironmentVariablesManager\obj\Release\EnvironmentVariablesMaster.pdb
