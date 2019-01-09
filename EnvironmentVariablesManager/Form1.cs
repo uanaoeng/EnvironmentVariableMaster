@@ -409,7 +409,7 @@ namespace EnvironmentVariablesManager
 
         private void buttonAbout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("欢迎使用：变量大湿(v2.0）。\r\n请将软件运行错误或改进意见反馈至开发者邮箱，帮助改进此软件：\r\nuanaoeng@outlook.com\r\n\r\n变量大湿是开源软件，项目地址为：\r\nhttp//github.com/uanaoeng/EnvironmentVariableMaster");
+            MessageBox.Show("欢迎使用：变量大湿(v2.0）。\r\n请将软件运行错误或改进意见反馈至开发者邮箱，帮助改进此软件：\r\nuanaoeng@outlook.com\r\n\r\n变量大湿是开源软件，项目地址为：\r\nhttp://github.com/uanaoeng/EnvironmentVariableMaster");
         }
 
 //------------------------------------------------------------------------------
