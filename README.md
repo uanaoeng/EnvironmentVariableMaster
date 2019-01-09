@@ -9,9 +9,9 @@
 ![主界面](mainForm.png)
 ![变量编辑界面](subForm.png) 
 
-最新版本下载
+软件下载
 ============
-[变量大湿1.0](\EnvironmentVariablesManager\bin\Release\EnvironmentVariablesMaster.exe)
+[变量大湿1.0](\EnvironmentVariablesManager\bin\Release)
 
 程序需要改进的地方
 =================
