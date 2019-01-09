@@ -11,7 +11,7 @@
 
 软件下载
 ============
-[变量大湿1.0](\EnvironmentVariablesManager\bin\Release)
+[变量大湿](\EnvironmentVariablesManager\bin\Release)
 
 程序需要改进的地方
 =================
