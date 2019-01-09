@@ -1,0 +1,10 @@
+C:\Users\Doer\Documents\Visual Studio 2013\Projects\EnvironmentVariablesManager\EnvironmentVariablesManager\bin\Debug\EnvironmentVariablesManager.exe.config
+C:\Users\Doer\Documents\Visual Studio 2013\Projects\EnvironmentVariablesManager\EnvironmentVariablesManager\bin\Debug\EnvironmentVariablesManager.exe
+C:\Users\Doer\Documents\Visual Studio 2013\Projects\EnvironmentVariablesManager\EnvironmentVariablesManager\bin\Debug\EnvironmentVariablesManager.pdb
+C:\Users\Doer\Documents\Visual Studio 2013\Projects\EnvironmentVariablesManager\EnvironmentVariablesManager\obj\Debug\EnvironmentVariablesManager.FormMain.resources
+C:\Users\Doer\Documents\Visual Studio 2013\Projects\EnvironmentVariablesManager\EnvironmentVariablesManager\obj\Debug\EnvironmentVariablesManager.FormVariableEditor.resources
+C:\Users\Doer\Documents\Visual Studio 2013\Projects\EnvironmentVariablesManager\EnvironmentVariablesManager\obj\Debug\EnvironmentVariablesManager.Properties.Resources.resources
+C:\Users\Doer\Documents\Visual Studio 2013\Projects\EnvironmentVariablesManager\EnvironmentVariablesManager\obj\Debug\EnvironmentVariablesManager.csproj.GenerateResource.Cache
+C:\Users\Doer\Documents\Visual Studio 2013\Projects\EnvironmentVariablesManager\EnvironmentVariablesManager\obj\Debug\EnvironmentVariablesManager.exe
+C:\Users\Doer\Documents\Visual Studio 2013\Projects\EnvironmentVariablesManager\EnvironmentVariablesManager\obj\Debug\EnvironmentVariablesManager.pdb
+C:\Users\Doer\Documents\Visual Studio 2013\Projects\EnvironmentVariablesManager\EnvironmentVariablesManager\obj\Debug\EnvironmentVariablesManager.csprojResolveAssemblyReference.cache

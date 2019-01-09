@@ -1,0 +1,9 @@
+C:\Users\Doer\Documents\Visual Studio 2013\Projects\EnvironmentVariablesManager\EnvironmentVariablesManager\obj\Release\EnvironmentVariablesManager.FormMain.resources
+C:\Users\Doer\Documents\Visual Studio 2013\Projects\EnvironmentVariablesManager\EnvironmentVariablesManager\obj\Release\EnvironmentVariablesManager.FormVariableEditor.resources
+C:\Users\Doer\Documents\Visual Studio 2013\Projects\EnvironmentVariablesManager\EnvironmentVariablesManager\obj\Release\EnvironmentVariablesManager.Properties.Resources.resources
+C:\Users\Doer\Documents\Visual Studio 2013\Projects\EnvironmentVariablesManager\EnvironmentVariablesManager\obj\Release\EnvironmentVariablesManager.csproj.GenerateResource.Cache
+C:\Users\Doer\Documents\Visual Studio 2013\Projects\EnvironmentVariablesManager\EnvironmentVariablesManager\bin\Release\EnvironmentVariablesMaster.exe.config
+C:\Users\Doer\Documents\Visual Studio 2013\Projects\EnvironmentVariablesManager\EnvironmentVariablesManager\bin\Release\EnvironmentVariablesMaster.exe
+C:\Users\Doer\Documents\Visual Studio 2013\Projects\EnvironmentVariablesManager\EnvironmentVariablesManager\bin\Release\EnvironmentVariablesMaster.pdb
+C:\Users\Doer\Documents\Visual Studio 2013\Projects\EnvironmentVariablesManager\EnvironmentVariablesManager\obj\Release\EnvironmentVariablesMaster.exe
+C:\Users\Doer\Documents\Visual Studio 2013\Projects\EnvironmentVariablesManager\EnvironmentVariablesManager\obj\Release\EnvironmentVariablesMaster.pdb
