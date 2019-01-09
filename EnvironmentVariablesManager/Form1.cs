@@ -24,8 +24,12 @@ namespace EnvironmentVariablesManager
 
         RegistryKey rkLocalMachine;
         RegistryKey rkCurrentUser;
+        int listViewUserSelectedItemIndex;
+        int listViewSystemSelectedItemIndex;
 
-        #region 开始 - 构造函数
+//=============================================================================
+# region 开始 - 构造函数
+//=============================================================================
         public FormMain()
         {
             // 从注册表中读取用户环境变量和系统环境变量
@@ -36,10 +40,14 @@ namespace EnvironmentVariablesManager
             // 调用在另另一个文件中定义的方法，对窗口组件的属性进行设置
             InitializeComponent();
 
+//------------------------------------------------------------------------------
+
             #region 开始 - 对groupBoxUser 组件的操作
             // 更改groupBoxUser的标题
             this.groupBoxUser.Text = Environment.UserName + " 的用户变量(&U)";
             #endregion 结束 - 对groupBoxUser 组件的操作
+
+//------------------------------------------------------------------------------
 
             #region 开始 - 向 listViewUser 组件中写入数据
 
@@ -50,6 +58,8 @@ namespace EnvironmentVariablesManager
             this.listViewUser.Columns.Add("变量名", 150);
             this.listViewUser.Columns.Add("变量值", 150);
             this.listViewUser.Columns.Add("类型", 150);
+            // 对listView的item按升序进行排序
+            this.listViewUser.Sorting = SortOrder.Ascending;
 
 
             RegistryKey rkCurrentUser = Registry.CurrentUser.OpenSubKey("Environment");
@@ -80,15 +90,16 @@ namespace EnvironmentVariablesManager
                     listViewItems.Add(item);
                 }
 
-
             }
 
             this.listViewUser.Items.AddRange((ListViewItem[])listViewItems.ToArray(typeof(ListViewItem)));
 
             // 添加事件
             this.listViewUser.DoubleClick += new System.EventHandler(Edit_listViewUserItem);
-
+            this.listViewUser.KeyDown += new KeyEventHandler(listViewUser_KeyDown);
             #endregion 结束 - 向 listViewUser 组件中写入数据
+
+//------------------------------------------------------------------------------
 
             #region 开始 - 向 listViewSystem 组件中写入数据
 
@@ -99,6 +110,8 @@ namespace EnvironmentVariablesManager
             this.listViewSystem.Columns.Add("变量名", 150);
             this.listViewSystem.Columns.Add("变量值", 150);
             this.listViewSystem.Columns.Add("类型", 150);
+            // 对listView的item按升序进行排序
+            this.listViewSystem.Sorting = SortOrder.Ascending;
 
             RegistryKey rkLocalMachine = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Control\Session Manager\Environment");
 
@@ -132,8 +145,11 @@ namespace EnvironmentVariablesManager
 
             // 添加事件
             this.listViewSystem.DoubleClick += new System.EventHandler(Edit_listViewSystemItem);
+            this.listViewSystem.KeyDown += new KeyEventHandler(listViewSystem_KeyDown);
 
             #endregion 结束 - 向 listViewSystem 组件中写入数据
+
+//------------------------------------------------------------------------------
 
             #region 开始 - 给按钮添加事件
 
@@ -150,19 +166,22 @@ namespace EnvironmentVariablesManager
 
             #endregion 结束 - 给按钮添加事件
 
-
         }
-        #endregion 结束 - 构造函数
+
+#endregion 结束 - 构造函数
 
 
-        #region 开始 - 事件委托
 
+//=============================================================================
+#region 开始 - 事件委托
+//=============================================================================
+
+        //
+        // 对 listViewUser的子项进行编辑
+        // 单击 btnUserEdit 或双击 listViewUserItem 时触发
+        //        
         private void Edit_listViewUserItem(object sender, EventArgs e)
         {
-            //
-            // 对 listViewUser的子项进行编辑
-            // 单击 btnUserEdit 或双击 listViewUserItem 时触发
-            //
 
             FormVariableEditor formVarEditor;
             string formTitle;
@@ -184,6 +203,8 @@ namespace EnvironmentVariablesManager
             }
 
         }
+
+//------------------------------------------------------------------------------
 
         //
         // 用户对 listViewSystem的子项进行编辑时执行此操作
@@ -212,10 +233,12 @@ namespace EnvironmentVariablesManager
 
         }
 
+//------------------------------------------------------------------------------
+
+        // 当用户单击 btnUserNew 时触发
+        // 新建 listUserItem 子项
         private void New_listViewUserItem(object sender, EventArgs e)
         {
-            // 新建 listUserItem 子项
-            // 当用户单击 btnUserNew 时触发
 
             FormVariableEditor formVarEditor;
             string formTitle;
@@ -235,10 +258,12 @@ namespace EnvironmentVariablesManager
 
         }
 
+//------------------------------------------------------------------------------
+
+        // 当用户单击 btnSysNew 时触发
+        // 新建 listSystemItem 子项
         private void New_listViewSystemItem(object sender, EventArgs e)
         {
-            // 新建 listSystemItem 子项
-            // 当用户单击 btnSysNew 时触发
 
             FormVariableEditor formVarEditor;
             string formTitle;
@@ -258,12 +283,14 @@ namespace EnvironmentVariablesManager
 
         }
 
+//------------------------------------------------------------------------------
+
+        // 单击 btnUserDel 按钮时触发
+        // 这个方法还不够完善，应在删除完一项后，自动定位下一项
+        // 如果该项不是第一项，就往前删，如果是第一项，就往后删除
+        // 当所有项都已经删除完成，将编辑按钮和删除按钮设置为不可选中
         private void Del_listViewUserItem(object sender, EventArgs e)
         {
-            // 单击 btnUserDel 按钮时触发
-            // 这个方法还不够完善，应在删除完一项后，自动定位下一项
-            // 如果该项不是第一项，就往前删，如果是第一项，就往后删除
-            // 当所有项都已经删除完成，将编辑按钮和删除按钮设置为不可选中
             ListView.SelectedIndexCollection sel = this.listViewUser.SelectedIndices;
             if (sel.Count != 0)
             {
@@ -272,15 +299,23 @@ namespace EnvironmentVariablesManager
                 GlobalData.listViewUserChanged = true;
                 this.btnSaveConfig.Enabled = true;
             }
+            
+            if (this.listViewUser.Items.Count == 0)
+            {
+                this.btnUserDel.Enabled = false;
+                this.btnUserEdit.Enabled = false;
+            }
 
         }
 
+//------------------------------------------------------------------------------
+
+        // 单击 btnSysDel 按钮时触发
+        // 这个方法还不够完善，应在删除完一项后，自动定位下一项或上一项
+        // 如果该项不是第一项，就往前删，如果是第一项，就往后删除
+        // 当所有项都已经删除完成，将编辑按钮和删除按钮设置为不可选中
         private void Del_listViewSystemItem(object sender, EventArgs e)
         {
-            // 单击 btnSysDel 按钮时触发
-            // 这个方法还不够完善，应在删除完一项后，自动定位下一项或上一项
-            // 如果该项不是第一项，就往前删，如果是第一项，就往后删除
-            // 当所有项都已经删除完成，将编辑按钮和删除按钮设置为不可选中
             ListView.SelectedIndexCollection sel = this.listViewSystem.SelectedIndices;
             if(sel.Count != 0)
             {
@@ -290,13 +325,21 @@ namespace EnvironmentVariablesManager
                 this.btnSaveConfig.Enabled = true;
             }
 
+            if (this.listViewSystem.Items.Count == 0)
+            {
+                this.btnSysDel.Enabled = false;
+                this.btnSysEdit.Enabled = false;
+            }
+
         }
 
+//------------------------------------------------------------------------------
+
+        //
+        // 将listView中的值写入注册表
+        //
         private void btnSaveConfig_Click(object sender, EventArgs e)
         {
-            //
-            // 将listView中的值写入注册表
-            //
             if (GlobalData.listViewUserChanged == true)
             {
 
@@ -349,14 +392,8 @@ namespace EnvironmentVariablesManager
             this.btnSaveConfig.Enabled = false;
 
         }
-     
 
-        #endregion 结束 - 事件委托
-
-        private void groupBoxUser_Enter(object sender, EventArgs e)
-        {
-
-        }
+//------------------------------------------------------------------------------
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -368,10 +405,108 @@ namespace EnvironmentVariablesManager
             }
         }
 
+//------------------------------------------------------------------------------
+
         private void buttonAbout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("欢迎使用：变量大湿(v1.0）。\r\n请将软件运行错误或改进意见反馈至开发者邮箱，帮助改进此软件：\r\nuanaoeng@outlook.com\r\n\r\n变量大湿是开源软件，项目地址为：\r\nhttp://github.com/uanaoeng/EnvironmentVariableMaster");
+            MessageBox.Show("欢迎使用：变量大湿(v2.0）。\r\n请将软件运行错误或改进意见反馈至开发者邮箱，帮助改进此软件：\r\nuanaoeng@outlook.com\r\n\r\n变量大湿是开源软件，项目地址为：\r\nhttp//github.com/uanaoeng/EnvironmentVariableMaster");
         }
+
+//------------------------------------------------------------------------------
+        
+        // 用户选中listViewUser中的Item并按下键盘时触发
+        private void listViewUser_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                FormVariableEditor formVarEditor;
+                string formTitle;
+                string textBoxVarName;
+                string textBoxVarValue;
+
+                ListView.SelectedIndexCollection sel = this.listViewUser.SelectedIndices;
+                if (sel.Count != 0)
+                {
+                    formTitle = "编辑用户变量";
+                    textBoxVarName = this.listViewUser.Items[sel[0]].Text;
+                    textBoxVarValue = this.listViewUser.Items[sel[0]].SubItems[1].Text.Replace(";", ";\r\n\r\n");
+                    formVarEditor = new FormVariableEditor(this, formTitle, textBoxVarName, textBoxVarValue);
+                    formVarEditor.Show();
+                    // 当子窗口打开时，禁用本窗口
+                    this.Enabled = false;
+                    formVarEditor.textBox2.Focus();
+                    GlobalData.whatCaseFormVarEditorStart = CaseFormVarEditorStart.editlistViewUserItem;
+                }
+            }
+            if(e.KeyCode == Keys.Delete)
+            {
+                // 这段代码就是上面btnUserDel按钮按下时触发的方法，写在这里感觉重复了
+                // 不知道有没办法直接调用？
+                ListView.SelectedIndexCollection sel = this.listViewUser.SelectedIndices;
+                if (sel.Count != 0)
+                {
+                    this.listViewUser.Items[sel[0]].Remove();
+
+                    GlobalData.listViewUserChanged = true;
+                    this.btnSaveConfig.Enabled = true;
+                }
+
+                if (this.listViewUser.Items.Count == 0)
+                {
+                    this.btnUserDel.Enabled = false;
+                    this.btnUserEdit.Enabled = false;
+                }
+            }
+
+        }
+
+//------------------------------------------------------------------------------
+        
+        // 用户选中listViewSystem中的Item并按下键盘时触发
+        private void listViewSystem_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                FormVariableEditor formVarEditor;
+                string formTitle;
+                string textBoxVarName;
+                string textBoxVarValue;
+
+                ListView.SelectedIndexCollection sel = this.listViewSystem.SelectedIndices;
+                if (sel.Count != 0)
+                {
+                    formTitle = "编辑系统变量";
+                    textBoxVarName = this.listViewSystem.Items[sel[0]].Text;
+                    textBoxVarValue = this.listViewSystem.Items[sel[0]].SubItems[1].Text.Replace(";", ";\r\n\r\n");
+                    formVarEditor = new FormVariableEditor(this, formTitle, textBoxVarName, textBoxVarValue);
+                    formVarEditor.Show();
+                    // 当子窗口打开时，禁用本窗口
+                    this.Enabled = false;
+                    formVarEditor.textBox2.Focus();
+                    GlobalData.whatCaseFormVarEditorStart = CaseFormVarEditorStart.editlistViewSystemItem;
+                }
+            }
+            if (e.KeyCode == Keys.Delete)
+            {
+                ListView.SelectedIndexCollection sel = this.listViewSystem.SelectedIndices;
+                if (sel.Count != 0)
+                {
+                    this.listViewSystem.Items[sel[0]].Remove();
+
+                    GlobalData.listViewSystemChanged = true;
+                    this.btnSaveConfig.Enabled = true;
+                }
+
+                if (this.listViewSystem.Items.Count == 0)
+                {
+                    this.btnSysDel.Enabled = false;
+                    this.btnSysEdit.Enabled = false;
+                }
+            }
+        }
+
+
+#endregion 结束 - 事件委托
 
     }
 }

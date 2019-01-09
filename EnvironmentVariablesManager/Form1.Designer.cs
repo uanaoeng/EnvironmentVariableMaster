@@ -67,7 +67,6 @@
             this.groupBoxUser.TabIndex = 6;
             this.groupBoxUser.TabStop = false;
             this.groupBoxUser.Text = "用户变量(&U)";
-            this.groupBoxUser.Enter += new System.EventHandler(this.groupBoxUser_Enter);
             // 
             // listViewUser
             // 
