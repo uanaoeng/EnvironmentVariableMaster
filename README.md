@@ -11,7 +11,7 @@
 
 软件下载
 ============
-[变量大湿](\EnvironmentVariablesManager\bin\Release)
+请到项目文件夹EnvironmentVariablesManager\bin\Release目录下下载exe文件。
 
 程序需要改进的地方
 =================
