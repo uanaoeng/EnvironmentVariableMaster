@@ -44,7 +44,7 @@
             this.label1.Location = new System.Drawing.Point(8, 22);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(142, 24);
-            this.label1.TabIndex = 0;
+            this.label1.TabIndex = 1;
             this.label1.Text = "变量名(&N)：";
             // 
             // label2
@@ -54,7 +54,7 @@
             this.label2.Location = new System.Drawing.Point(8, 119);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(142, 24);
-            this.label2.TabIndex = 1;
+            this.label2.TabIndex = 3;
             this.label2.Text = "变量值(&V)：";
             // 
             // textBox1
@@ -69,10 +69,10 @@
             // buttonSaveChange
             // 
             this.buttonSaveChange.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.buttonSaveChange.Location = new System.Drawing.Point(655, 646);
+            this.buttonSaveChange.Location = new System.Drawing.Point(615, 646);
             this.buttonSaveChange.Name = "buttonSaveChange";
-            this.buttonSaveChange.Size = new System.Drawing.Size(100, 32);
-            this.buttonSaveChange.TabIndex = 4;
+            this.buttonSaveChange.Size = new System.Drawing.Size(120, 35);
+            this.buttonSaveChange.TabIndex = 5;
             this.buttonSaveChange.Text = "保存(&S)";
             this.buttonSaveChange.UseVisualStyleBackColor = true;
             this.buttonSaveChange.Click += new System.EventHandler(this.buttonSaveChange_Click);
@@ -80,10 +80,10 @@
             // buttonCancelChange
             // 
             this.buttonCancelChange.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.buttonCancelChange.Location = new System.Drawing.Point(766, 646);
+            this.buttonCancelChange.Location = new System.Drawing.Point(746, 646);
             this.buttonCancelChange.Name = "buttonCancelChange";
-            this.buttonCancelChange.Size = new System.Drawing.Size(100, 32);
-            this.buttonCancelChange.TabIndex = 5;
+            this.buttonCancelChange.Size = new System.Drawing.Size(120, 35);
+            this.buttonCancelChange.TabIndex = 6;
             this.buttonCancelChange.Text = "取消(&C)";
             this.buttonCancelChange.UseVisualStyleBackColor = true;
             this.buttonCancelChange.Click += new System.EventHandler(this.buttonCancelChange_Click);
@@ -94,7 +94,7 @@
             this.textBox2.Location = new System.Drawing.Point(12, 168);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(854, 458);
-            this.textBox2.TabIndex = 6;
+            this.textBox2.TabIndex = 4;
             this.textBox2.Text = "";
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 

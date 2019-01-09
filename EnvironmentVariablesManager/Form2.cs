@@ -241,5 +241,16 @@ namespace EnvironmentVariablesManager
                 this.buttonSaveChange.Enabled = false;
             }
         }
+
+        private void YourControl_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.Alt) & (e.KeyCode == Keys.N))
+            {
+                this.textBox1.Focus();
+            }
+        }
+
+
+
     }
 }

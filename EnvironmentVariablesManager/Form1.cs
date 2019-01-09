@@ -24,8 +24,6 @@ namespace EnvironmentVariablesManager
 
         RegistryKey rkLocalMachine;
         RegistryKey rkCurrentUser;
-        int listViewUserSelectedItemIndex;
-        int listViewSystemSelectedItemIndex;
 
 //=============================================================================
 # region 开始 - 构造函数
@@ -59,7 +57,6 @@ namespace EnvironmentVariablesManager
             this.listViewUser.Columns.Add("变量值", 150);
             this.listViewUser.Columns.Add("类型", 150);
             // 对listView的item按升序进行排序
-            this.listViewUser.Sorting = SortOrder.Ascending;
 
 
             RegistryKey rkCurrentUser = Registry.CurrentUser.OpenSubKey("Environment");
@@ -93,6 +90,11 @@ namespace EnvironmentVariablesManager
             }
 
             this.listViewUser.Items.AddRange((ListViewItem[])listViewItems.ToArray(typeof(ListViewItem)));
+            this.listViewUser.Sorting = SortOrder.Ascending;            
+            if(this.listViewUser.Items.Count != 0)
+            {
+                this.listViewUser.Items[0].Selected = true;
+            }
 
             // 添加事件
             this.listViewUser.DoubleClick += new System.EventHandler(Edit_listViewUserItem);
@@ -142,6 +144,11 @@ namespace EnvironmentVariablesManager
             }
 
             this.listViewSystem.Items.AddRange((ListViewItem[])listViewItems.ToArray(typeof(ListViewItem)));
+
+            if(this.listViewSystem.Items.Count != 0)
+            {
+                this.listViewSystem.Items[0].Selected = true;
+            }
 
             // 添加事件
             this.listViewSystem.DoubleClick += new System.EventHandler(Edit_listViewSystemItem);
@@ -409,7 +416,7 @@ namespace EnvironmentVariablesManager
 
         private void buttonAbout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("欢迎使用：变量大湿(v2.0）。\r\n请将软件运行错误或改进意见反馈至开发者邮箱，帮助改进此软件：\r\nuanaoeng@outlook.com\r\n\r\n变量大湿是开源软件，项目地址为：\r\nhttp://github.com/uanaoeng/EnvironmentVariableMaster");
+            MessageBox.Show("欢迎使用：变量大湿(v2.1）。\r\n请将软件运行错误或改进意见反馈至开发者邮箱，帮助改进此软件：\r\nuanaoeng@outlook.com\r\n\r\n变量大湿是开源软件，项目地址为：\r\nhttp://github.com/uanaoeng/EnvironmentVariableMaster");
         }
 
 //------------------------------------------------------------------------------

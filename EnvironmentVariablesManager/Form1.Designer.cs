@@ -64,7 +64,7 @@
             this.groupBoxUser.Location = new System.Drawing.Point(12, 12);
             this.groupBoxUser.Name = "groupBoxUser";
             this.groupBoxUser.Size = new System.Drawing.Size(658, 300);
-            this.groupBoxUser.TabIndex = 6;
+            this.groupBoxUser.TabIndex = 1;
             this.groupBoxUser.TabStop = false;
             this.groupBoxUser.Text = "用户变量(&U)";
             // 
@@ -73,7 +73,7 @@
             this.listViewUser.Location = new System.Drawing.Point(6, 33);
             this.listViewUser.Name = "listViewUser";
             this.listViewUser.Size = new System.Drawing.Size(646, 220);
-            this.listViewUser.TabIndex = 0;
+            this.listViewUser.TabIndex = 2;
             this.listViewUser.UseCompatibleStateImageBehavior = false;
             // 
             // btnUserEdit
@@ -82,7 +82,7 @@
             this.btnUserEdit.Location = new System.Drawing.Point(406, 259);
             this.btnUserEdit.Name = "btnUserEdit";
             this.btnUserEdit.Size = new System.Drawing.Size(120, 35);
-            this.btnUserEdit.TabIndex = 2;
+            this.btnUserEdit.TabIndex = 4;
             this.btnUserEdit.Text = "编辑(&E)";
             this.btnUserEdit.UseVisualStyleBackColor = false;
             // 
@@ -92,7 +92,7 @@
             this.btnUserNew.Location = new System.Drawing.Point(280, 259);
             this.btnUserNew.Name = "btnUserNew";
             this.btnUserNew.Size = new System.Drawing.Size(120, 35);
-            this.btnUserNew.TabIndex = 1;
+            this.btnUserNew.TabIndex = 3;
             this.btnUserNew.Text = "新建(&N)";
             this.btnUserNew.UseVisualStyleBackColor = false;
             // 
@@ -102,7 +102,7 @@
             this.btnUserDel.Location = new System.Drawing.Point(532, 259);
             this.btnUserDel.Name = "btnUserDel";
             this.btnUserDel.Size = new System.Drawing.Size(120, 35);
-            this.btnUserDel.TabIndex = 3;
+            this.btnUserDel.TabIndex = 5;
             this.btnUserDel.Text = "删除(&D)";
             this.btnUserDel.UseVisualStyleBackColor = false;
             // 
@@ -116,7 +116,7 @@
             this.groupBoxSystem.Location = new System.Drawing.Point(12, 338);
             this.groupBoxSystem.Name = "groupBoxSystem";
             this.groupBoxSystem.Size = new System.Drawing.Size(658, 300);
-            this.groupBoxSystem.TabIndex = 7;
+            this.groupBoxSystem.TabIndex = 6;
             this.groupBoxSystem.TabStop = false;
             this.groupBoxSystem.Text = "系统变量(&S)（需要以管理员身份运行此软件）";
             // 
@@ -127,7 +127,7 @@
             this.btnSysDel.Location = new System.Drawing.Point(532, 259);
             this.btnSysDel.Name = "btnSysDel";
             this.btnSysDel.Size = new System.Drawing.Size(120, 35);
-            this.btnSysDel.TabIndex = 3;
+            this.btnSysDel.TabIndex = 10;
             this.btnSysDel.Text = "删除(&L)";
             this.btnSysDel.UseVisualStyleBackColor = false;
             // 
@@ -138,7 +138,7 @@
             this.btnSysNew.Location = new System.Drawing.Point(280, 259);
             this.btnSysNew.Name = "btnSysNew";
             this.btnSysNew.Size = new System.Drawing.Size(120, 35);
-            this.btnSysNew.TabIndex = 2;
+            this.btnSysNew.TabIndex = 8;
             this.btnSysNew.Text = "新建(&W)";
             this.btnSysNew.UseVisualStyleBackColor = false;
             // 
@@ -149,7 +149,7 @@
             this.btnSysEdit.Location = new System.Drawing.Point(406, 259);
             this.btnSysEdit.Name = "btnSysEdit";
             this.btnSysEdit.Size = new System.Drawing.Size(120, 35);
-            this.btnSysEdit.TabIndex = 1;
+            this.btnSysEdit.TabIndex = 9;
             this.btnSysEdit.Text = " 编辑(&I)";
             this.btnSysEdit.UseVisualStyleBackColor = false;
             // 
@@ -158,7 +158,7 @@
             this.listViewSystem.Location = new System.Drawing.Point(6, 33);
             this.listViewSystem.Name = "listViewSystem";
             this.listViewSystem.Size = new System.Drawing.Size(646, 220);
-            this.listViewSystem.TabIndex = 0;
+            this.listViewSystem.TabIndex = 7;
             this.listViewSystem.UseCompatibleStateImageBehavior = false;
             this.listViewSystem.View = System.Windows.Forms.View.Details;
             // 
@@ -170,7 +170,7 @@
             this.btnSaveConfig.Location = new System.Drawing.Point(550, 656);
             this.btnSaveConfig.Name = "btnSaveConfig";
             this.btnSaveConfig.Size = new System.Drawing.Size(120, 35);
-            this.btnSaveConfig.TabIndex = 4;
+            this.btnSaveConfig.TabIndex = 11;
             this.btnSaveConfig.Text = "应用(&S)";
             this.btnSaveConfig.UseVisualStyleBackColor = false;
             // 
@@ -180,7 +180,7 @@
             this.buttonAbout.Location = new System.Drawing.Point(12, 656);
             this.buttonAbout.Name = "buttonAbout";
             this.buttonAbout.Size = new System.Drawing.Size(120, 35);
-            this.buttonAbout.TabIndex = 8;
+            this.buttonAbout.TabIndex = 12;
             this.buttonAbout.Text = "关于(&A)";
             this.buttonAbout.UseVisualStyleBackColor = true;
             this.buttonAbout.Click += new System.EventHandler(this.buttonAbout_Click);
