@@ -123,68 +123,115 @@ namespace EnvironmentVariablesManager
 
                 case CaseFormVarEditorStart.addlistViewUserItem:
 
-                    item = new ListViewItem(this.textBox1.Text);
-                    item.SubItems.Add(formatString(this.textBox2.Text));
-
                     // 判断变量值中是否存在%字符
                     // 根据判断结果决定listView中显示变量类型的值为REG_EXPAND_SZ还是REG_SZ
                     if(this.textBox2.Text.Contains('%'))
                     {
                         valueKind = "REG_EXPAND_SZ";
-                        item.SubItems.Add(valueKind);
                     }
                     else
                     {
                         valueKind = "REG_SZ";
-                        item.SubItems.Add(valueKind);
+
                     }
 
                     // 新建listView子项时，检测listView中是否存在同名子项
                     // 如果存在，就将新的变量值和变量类型赋给已经存在的同名的子项，否则就添加新的子项
-                    if (parentFormObj.listViewUser.FindItemWithText(item.Text) != null)
+                    bool existItem = false;
+                    int existItemIndex = 0;
+                    if (parentFormObj.listViewUser.Items.Count != 0)
                     {
-                        parentFormObj.listViewUser.FindItemWithText(item.Text).SubItems[1].Text = formatString(this.textBox2.Text);
-                        parentFormObj.listViewUser.FindItemWithText(item.Text).SubItems[2].Text = valueKind;
+                        foreach (ListViewItem itm in parentFormObj.listViewUser.Items)
+                        {
+                            if (itm.Text == this.textBox1.Text)
+                            {
+                                existItem = true;
+                                existItemIndex = itm.Index;
+                                break;
+                            }
+                            else
+                            {
+                                existItem = false;
+                            }
+                        }
                     }
                     else
                     {
+                        existItem = false;
+                        existItemIndex = 0;
+                    }
+
+
+                    if (existItem == true)
+                    {
+                        parentFormObj.listViewUser.Items[existItemIndex].SubItems[1].Text = formatString(this.textBox2.Text);
+                        parentFormObj.listViewUser.Items[existItemIndex].SubItems[2].Text = valueKind;
+                    }
+                    else
+                    {
+                        item = new ListViewItem(this.textBox1.Text);
+                        item.SubItems.Add(formatString(this.textBox2.Text));
+                        item.SubItems.Add(valueKind);
                         parentFormObj.listViewUser.Items.Add(item);
                     }
+
                     GlobalData.listViewUserChanged = true;
                     break;
 
                 case CaseFormVarEditorStart.addlistViewSystemItem:
-
-                    item = new ListViewItem(this.textBox1.Text);
-                    item.SubItems.Add(formatString(this.textBox2.Text));
-
                     // 判断变量值中是否存在%字符
                     // 根据判断结果决定listView中显示变量类型的值为REG_EXPAND_SZ还是REG_SZ
                     if (this.textBox2.Text.Contains('%'))
                     {
                         valueKind = "REG_EXPAND_SZ";
-                        item.SubItems.Add(valueKind);
                     }
                     else
                     {
                         valueKind = "REG_SZ";
-                        item.SubItems.Add(valueKind);
+
                     }
 
                     // 新建listView子项时，检测listView中是否存在同名子项
                     // 如果存在，就将新的变量值和变量类型赋给已经存在的同名的子项，否则就添加新的子项
-                    if (parentFormObj.listViewSystem.FindItemWithText(item.Text) != null)
+                    existItem = false;
+                    existItemIndex = 0;
+                    if (parentFormObj.listViewSystem.Items.Count != 0)
                     {
-                        parentFormObj.listViewSystem.FindItemWithText(item.Text).SubItems[1].Text = formatString(this.textBox2.Text);
-                        parentFormObj.listViewSystem.FindItemWithText(item.Text).SubItems[2].Text = valueKind;
+                        foreach (ListViewItem itm in parentFormObj.listViewSystem.Items)
+                        {
+                            if (itm.Text == this.textBox1.Text)
+                            {
+                                existItem = true;
+                                existItemIndex = itm.Index;
+                                break;
+                            }
+                            else
+                            {
+                                existItem = false;
+                            }
+                        }
                     }
                     else
                     {
+                        existItem = false;
+                        existItemIndex = 0;
+                    }
+
+
+                    if (existItem == true)
+                    {
+                        parentFormObj.listViewSystem.Items[existItemIndex].SubItems[1].Text = formatString(this.textBox2.Text);
+                        parentFormObj.listViewSystem.Items[existItemIndex].SubItems[2].Text = valueKind;
+                    }
+                    else
+                    {
+                        item = new ListViewItem(this.textBox1.Text);
+                        item.SubItems.Add(formatString(this.textBox2.Text));
+                        item.SubItems.Add(valueKind);
                         parentFormObj.listViewSystem.Items.Add(item);
                     }
 
                     GlobalData.listViewSystemChanged = true;
-
                     break;
 
             }
