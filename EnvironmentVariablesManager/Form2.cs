@@ -41,7 +41,7 @@ namespace EnvironmentVariablesManager
         //
         private string formatString(string sourceString)
         {
-            return Regex.Replace(sourceString, Environment.NewLine, string.Empty, RegexOptions.Multiline);
+            return Regex.Replace(sourceString, @"[\r\n]+", string.Empty, RegexOptions.Multiline);
         }
 
         //

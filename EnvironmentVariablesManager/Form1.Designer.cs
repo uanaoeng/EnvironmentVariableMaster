@@ -171,7 +171,7 @@
             this.btnSaveConfig.Name = "btnSaveConfig";
             this.btnSaveConfig.Size = new System.Drawing.Size(120, 35);
             this.btnSaveConfig.TabIndex = 11;
-            this.btnSaveConfig.Text = "应用(&S)";
+            this.btnSaveConfig.Text = "应用(&B)";
             this.btnSaveConfig.UseVisualStyleBackColor = false;
             // 
             // buttonAbout
