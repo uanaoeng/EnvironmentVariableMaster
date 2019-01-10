@@ -22,8 +22,11 @@ namespace EnvironmentVariablesManager
         // 这个类定义了程序的主界面
         // 这个类的另一部分在文件Form1.Designer.cs中定义
 
-        RegistryKey rkLocalMachine;
-        RegistryKey rkCurrentUser;
+        RegistryKey rkSysEnvVar;
+        RegistryKey rkUserEnvVar;
+        string[] valueNames;
+        ArrayList listViewItems;
+        ListViewItem item;
 
 //=============================================================================
 # region 开始 - 构造函数
@@ -59,27 +62,35 @@ namespace EnvironmentVariablesManager
             // 对listView的item按升序进行排序
 
 
-            RegistryKey rkCurrentUser = Registry.CurrentUser.OpenSubKey("Environment");
-            ArrayList listViewItems = new ArrayList();
-            ListViewItem item;
+            // 对Environment子键进行访问之前，检查这个子键是否存在，如果不存在，就创建它
+            // 这样就避免了rkUserEnvVar.GetValueNames()的异常
 
-            foreach (string name in rkCurrentUser.GetValueNames())
+            rkUserEnvVar = Registry.CurrentUser.OpenSubKey("Environment");
+            if(rkUserEnvVar == null)
+            {
+                rkUserEnvVar = Registry.CurrentUser.CreateSubKey("Environment");
+            }
+
+            valueNames = rkUserEnvVar.GetValueNames();
+            listViewItems = new ArrayList();
+
+            foreach (string name in valueNames)
             {
                 // 从注册表中读取值时，只读取存储类型为REG_SZ和REG_EXPAND_SZ的值。 
-                string rkValueType = rkCurrentUser.GetValue(name).GetType().FullName;
+                string rkValueType = rkUserEnvVar.GetValue(name).GetType().FullName;
                 if (rkValueType == "System.String" )
                 {
                     item = new ListViewItem(name, 0);
                     item.Checked = true;
 
-                    switch(rkCurrentUser.GetValueKind(name))
+                    switch (rkUserEnvVar.GetValueKind(name))
                     {
                         case RegistryValueKind.ExpandString:
-                            item.SubItems.Add(rkCurrentUser.GetValue(name, "", RegistryValueOptions.DoNotExpandEnvironmentNames).ToString());
+                            item.SubItems.Add(rkUserEnvVar.GetValue(name, "", RegistryValueOptions.DoNotExpandEnvironmentNames).ToString());
                             item.SubItems.Add("REG_EXPAND_SZ");
                             break;
                         case RegistryValueKind.String:
-                            item.SubItems.Add(rkCurrentUser.GetValue(name).ToString());
+                            item.SubItems.Add(rkUserEnvVar.GetValue(name).ToString());
                             item.SubItems.Add("REG_SZ");
                             break;
                     }
@@ -99,7 +110,9 @@ namespace EnvironmentVariablesManager
             // 添加事件
             this.listViewUser.DoubleClick += new System.EventHandler(Edit_listViewUserItem);
             this.listViewUser.KeyDown += new KeyEventHandler(listViewUser_KeyDown);
+
             #endregion 结束 - 向 listViewUser 组件中写入数据
+
 
 //------------------------------------------------------------------------------
 
@@ -115,26 +128,34 @@ namespace EnvironmentVariablesManager
             // 对listView的item按升序进行排序
             this.listViewSystem.Sorting = SortOrder.Ascending;
 
-            RegistryKey rkLocalMachine = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Control\Session Manager\Environment");
+            // 对注册表子键进行访问之前先检测该子键是否存在，如果不存在，就创建它
+            // 以此避免了rkSysEnvVar.GetValueNames()异常
+            rkSysEnvVar = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Control\Session Manager\Environment");
+            if (rkSysEnvVar == null)
+            {
+                rkSysEnvVar = Registry.LocalMachine.CreateSubKey(@"SYSTEM\CurrentControlSet\Control\Session Manager\Environment");
+            }
 
-            listViewItems.Clear();
-            foreach (string name in rkLocalMachine.GetValueNames())
+            valueNames = rkSysEnvVar.GetValueNames();
+            listViewItems = new ArrayList();
+
+            foreach (string name in rkSysEnvVar.GetValueNames())
             {
                 // 从注册表中读取值时，只读取存储类型为REG_SZ和REG_EXPAND_SZ的值。             
-                string rkValueType = rkLocalMachine.GetValue(name).GetType().ToString();
+                string rkValueType = rkSysEnvVar.GetValue(name).GetType().ToString();
                 if(rkValueType == "System.String")
                 {
                     item = new ListViewItem(name, 0);
                     item.Checked = true;
 
-                    switch (rkLocalMachine.GetValueKind(name))
+                    switch (rkSysEnvVar.GetValueKind(name))
                     {
                         case RegistryValueKind.ExpandString:
-                            item.SubItems.Add(rkLocalMachine.GetValue(name, "", RegistryValueOptions.DoNotExpandEnvironmentNames).ToString());
+                            item.SubItems.Add(rkSysEnvVar.GetValue(name, "", RegistryValueOptions.DoNotExpandEnvironmentNames).ToString());
                             item.SubItems.Add("REG_EXPAND_SZ");
                             break;
                         case RegistryValueKind.String:
-                            item.SubItems.Add(rkLocalMachine.GetValue(name).ToString());
+                            item.SubItems.Add(rkSysEnvVar.GetValue(name).ToString());
                             item.SubItems.Add("REG_SZ");
                             break;
                     }
@@ -349,9 +370,8 @@ namespace EnvironmentVariablesManager
         {
             if (GlobalData.listViewUserChanged == true)
             {
-
-                RegistryKey rkUserEnvVar = Registry.CurrentUser.OpenSubKey("Environment",true);
-
+                Registry.CurrentUser.DeleteSubKey("Environment");
+                RegistryKey rkUserEnvVar = Registry.CurrentUser.CreateSubKey("Environment");
                 foreach (ListViewItem item in this.listViewUser.Items)
                 {
                     if (item.SubItems[1].Text.Contains('%'))
@@ -363,16 +383,15 @@ namespace EnvironmentVariablesManager
                         rkUserEnvVar.SetValue(item.Text, item.SubItems[1].Text);
                     }
                 }
-
                 GlobalData.listViewUserChanged = false;
-
             }
 
             if(GlobalData.listViewSystemChanged == true)
             {
                 try
                 {
-                    RegistryKey rkSysEnvVar = Registry.LocalMachine.OpenSubKey(@"SYSTEM\CurrentControlSet\Control\Session Manager\Environment", true);
+                    Registry.LocalMachine.DeleteSubKey(@"SYSTEM\CurrentControlSet\Control\Session Manager\Environment");
+                    rkSysEnvVar = Registry.LocalMachine.CreateSubKey(@"SYSTEM\CurrentControlSet\Control\Session Manager\Environment");
                     foreach (ListViewItem item in this.listViewSystem.Items)
                     {
                         if (item.SubItems[1].Text.Contains('%'))
@@ -384,6 +403,7 @@ namespace EnvironmentVariablesManager
                             rkSysEnvVar.SetValue(item.Text, item.SubItems[1].Text);
                         }
                     }
+                    GlobalData.listViewSystemChanged = false;
                 }
                 catch (SecurityException ex)
                 {
@@ -395,9 +415,7 @@ namespace EnvironmentVariablesManager
                 }
             }
 
-            GlobalData.listViewSystemChanged = false;
             this.btnSaveConfig.Enabled = false;
-
         }
 
 //------------------------------------------------------------------------------
@@ -416,7 +434,7 @@ namespace EnvironmentVariablesManager
 
         private void buttonAbout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("欢迎使用：变量大湿(v2.1）。\r\n请将软件运行错误或改进意见反馈至开发者邮箱，帮助改进此软件：\r\nuanaoeng@outlook.com\r\n\r\n变量大湿是开源软件，项目地址为：\r\nhttp://github.com/uanaoeng/EnvironmentVariableMaster");
+            MessageBox.Show("欢迎使用：变量大湿(v2.2）。\r\n请将软件运行错误或改进意见反馈至开发者邮箱，帮助改进此软件：\r\nuanaoeng@outlook.com\r\n\r\n变量大湿是开源软件，项目地址为：\r\nhttp://github.com/uanaoeng/EnvironmentVariableMaster");
         }
 
 //------------------------------------------------------------------------------
