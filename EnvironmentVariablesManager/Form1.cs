@@ -110,7 +110,6 @@ namespace EnvironmentVariablesManager
             // 添加事件
             this.listViewUser.DoubleClick += new System.EventHandler(Edit_listViewUserItem);
             this.listViewUser.KeyDown += new KeyEventHandler(listViewUser_KeyDown);
-
             #endregion 结束 - 向 listViewUser 组件中写入数据
 
 
@@ -374,7 +373,7 @@ namespace EnvironmentVariablesManager
                 RegistryKey rkUserEnvVar = Registry.CurrentUser.CreateSubKey("Environment");
                 foreach (ListViewItem item in this.listViewUser.Items)
                 {
-                    if (item.SubItems[1].Text.Contains('%'))
+                    if (item.SubItems[2].Text == "REG_EXPAND_SZ")
                     {
                         rkUserEnvVar.SetValue(item.Text, item.SubItems[1].Text, RegistryValueKind.ExpandString);
                     }
@@ -394,7 +393,7 @@ namespace EnvironmentVariablesManager
                     rkSysEnvVar = Registry.LocalMachine.CreateSubKey(@"SYSTEM\CurrentControlSet\Control\Session Manager\Environment");
                     foreach (ListViewItem item in this.listViewSystem.Items)
                     {
-                        if (item.SubItems[1].Text.Contains('%'))
+                        if (item.SubItems[2].Text == "REG_EXPAND_SZ")
                         {
                             rkSysEnvVar.SetValue(item.Text, item.SubItems[1].Text, RegistryValueKind.ExpandString);
                         }
@@ -530,8 +529,11 @@ namespace EnvironmentVariablesManager
             }
         }
 
+//------------------------------------------------------------------------------
 
 #endregion 结束 - 事件委托
+
+
 
     }
 }

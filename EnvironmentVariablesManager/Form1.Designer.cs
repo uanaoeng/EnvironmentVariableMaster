@@ -22,12 +22,12 @@
 
         // 声明Button控件
         public System.Windows.Forms.Button btnSaveConfig;
-        private System.Windows.Forms.Button btnUserDel;
-        private System.Windows.Forms.Button btnUserEdit;
+        public System.Windows.Forms.Button btnUserDel;
+        public System.Windows.Forms.Button btnUserEdit;
         private System.Windows.Forms.Button btnUserNew;
-        private System.Windows.Forms.Button btnSysDel;
+        public System.Windows.Forms.Button btnSysDel;
         private System.Windows.Forms.Button btnSysNew;
-        private System.Windows.Forms.Button btnSysEdit;
+        public System.Windows.Forms.Button btnSysEdit;
 
         #endregion 结束 - 字段声明
 

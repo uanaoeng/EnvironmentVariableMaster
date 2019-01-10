@@ -175,6 +175,13 @@ namespace EnvironmentVariablesManager
                         parentFormObj.listViewUser.Items.Add(item);
                     }
 
+                    if (parentFormObj.listViewUser.Items.Count != 0)
+                    {
+                        parentFormObj.btnUserEdit.Enabled = true;
+                        parentFormObj.btnUserDel.Enabled = true;
+                    }
+
+
                     GlobalData.listViewUserChanged = true;
                     break;
 
@@ -230,6 +237,13 @@ namespace EnvironmentVariablesManager
                         item.SubItems.Add(valueKind);
                         parentFormObj.listViewSystem.Items.Add(item);
                     }
+
+                    if (parentFormObj.listViewSystem.Items.Count != 0)
+                    {
+                        parentFormObj.btnSysEdit.Enabled = true;
+                        parentFormObj.btnSysDel.Enabled = true;
+                    }
+
 
                     GlobalData.listViewSystemChanged = true;
                     break;

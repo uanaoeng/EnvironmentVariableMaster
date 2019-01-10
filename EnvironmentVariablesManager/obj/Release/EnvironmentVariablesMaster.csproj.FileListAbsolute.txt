@@ -17,3 +17,4 @@ C:\Users\Doer\Documents\GitHub\EnvironmentVariableMaster\EnvironmentVariablesMan
 C:\Users\Doer\Documents\GitHub\EnvironmentVariableMaster\EnvironmentVariablesManager\bin\Release\EnvironmentVariablesMaster.pdb
 C:\Users\Doer\Documents\GitHub\EnvironmentVariableMaster\EnvironmentVariablesManager\obj\Release\EnvironmentVariablesMaster.exe
 C:\Users\Doer\Documents\GitHub\EnvironmentVariableMaster\EnvironmentVariablesManager\obj\Release\EnvironmentVariablesMaster.pdb
+C:\Users\Doer\Documents\GitHub\EnvironmentVariableMaster\EnvironmentVariablesManager\obj\Release\EnvironmentVariablesMaster.csprojResolveAssemblyReference.cache
