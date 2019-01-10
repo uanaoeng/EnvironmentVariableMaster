@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 
-namespace EnvironmentVariablesManager
+namespace EnvironmentVariablesMaster
 {
     public partial class FormVariableEditor : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace EnvironmentVariablesManager
+﻿namespace EnvironmentVariablesMaster
 {
     partial class FormVariableEditor
     {
