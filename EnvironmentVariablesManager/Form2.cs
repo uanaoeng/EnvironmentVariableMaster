@@ -244,7 +244,6 @@ namespace EnvironmentVariablesManager
                         parentFormObj.btnSysDel.Enabled = true;
                     }
 
-
                     GlobalData.listViewSystemChanged = true;
                     break;
 
