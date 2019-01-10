@@ -60,7 +60,7 @@
             this.groupBoxUser.Controls.Add(this.btnUserEdit);
             this.groupBoxUser.Controls.Add(this.btnUserNew);
             this.groupBoxUser.Controls.Add(this.btnUserDel);
-            this.groupBoxUser.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBoxUser.Font = new System.Drawing.Font("宋体", 14F);
             this.groupBoxUser.Location = new System.Drawing.Point(12, 12);
             this.groupBoxUser.Name = "groupBoxUser";
             this.groupBoxUser.Size = new System.Drawing.Size(658, 300);
@@ -79,6 +79,7 @@
             // btnUserEdit
             // 
             this.btnUserEdit.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnUserEdit.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnUserEdit.Location = new System.Drawing.Point(406, 259);
             this.btnUserEdit.Name = "btnUserEdit";
             this.btnUserEdit.Size = new System.Drawing.Size(120, 35);
@@ -89,6 +90,7 @@
             // btnUserNew
             // 
             this.btnUserNew.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnUserNew.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnUserNew.Location = new System.Drawing.Point(280, 259);
             this.btnUserNew.Name = "btnUserNew";
             this.btnUserNew.Size = new System.Drawing.Size(120, 35);
@@ -99,6 +101,7 @@
             // btnUserDel
             // 
             this.btnUserDel.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnUserDel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnUserDel.Location = new System.Drawing.Point(532, 259);
             this.btnUserDel.Name = "btnUserDel";
             this.btnUserDel.Size = new System.Drawing.Size(120, 35);
@@ -112,7 +115,7 @@
             this.groupBoxSystem.Controls.Add(this.btnSysNew);
             this.groupBoxSystem.Controls.Add(this.btnSysEdit);
             this.groupBoxSystem.Controls.Add(this.listViewSystem);
-            this.groupBoxSystem.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBoxSystem.Font = new System.Drawing.Font("宋体", 14F);
             this.groupBoxSystem.Location = new System.Drawing.Point(12, 338);
             this.groupBoxSystem.Name = "groupBoxSystem";
             this.groupBoxSystem.Size = new System.Drawing.Size(658, 300);
@@ -123,7 +126,8 @@
             // btnSysDel
             // 
             this.btnSysDel.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnSysDel.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnSysDel.Font = new System.Drawing.Font("宋体", 14F);
+            this.btnSysDel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnSysDel.Location = new System.Drawing.Point(532, 259);
             this.btnSysDel.Name = "btnSysDel";
             this.btnSysDel.Size = new System.Drawing.Size(120, 35);
@@ -134,7 +138,8 @@
             // btnSysNew
             // 
             this.btnSysNew.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnSysNew.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnSysNew.Font = new System.Drawing.Font("宋体", 14F);
+            this.btnSysNew.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnSysNew.Location = new System.Drawing.Point(280, 259);
             this.btnSysNew.Name = "btnSysNew";
             this.btnSysNew.Size = new System.Drawing.Size(120, 35);
@@ -145,7 +150,8 @@
             // btnSysEdit
             // 
             this.btnSysEdit.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnSysEdit.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnSysEdit.Font = new System.Drawing.Font("宋体", 14F);
+            this.btnSysEdit.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnSysEdit.Location = new System.Drawing.Point(406, 259);
             this.btnSysEdit.Name = "btnSysEdit";
             this.btnSysEdit.Size = new System.Drawing.Size(120, 35);
@@ -166,7 +172,8 @@
             // 
             this.btnSaveConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btnSaveConfig.Enabled = false;
-            this.btnSaveConfig.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnSaveConfig.Font = new System.Drawing.Font("宋体", 14F);
+            this.btnSaveConfig.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnSaveConfig.Location = new System.Drawing.Point(550, 656);
             this.btnSaveConfig.Name = "btnSaveConfig";
             this.btnSaveConfig.Size = new System.Drawing.Size(120, 35);
@@ -176,7 +183,8 @@
             // 
             // buttonAbout
             // 
-            this.buttonAbout.Font = new System.Drawing.Font("宋体", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.buttonAbout.Font = new System.Drawing.Font("宋体", 14F);
+            this.buttonAbout.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.buttonAbout.Location = new System.Drawing.Point(12, 656);
             this.buttonAbout.Name = "buttonAbout";
             this.buttonAbout.Size = new System.Drawing.Size(120, 35);
@@ -197,6 +205,7 @@
             this.Controls.Add(this.btnSaveConfig);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "变量大湿";

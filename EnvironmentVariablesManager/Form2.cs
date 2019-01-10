@@ -64,9 +64,7 @@ namespace EnvironmentVariablesManager
 
         //
         // 用户点击保存按钮时执行此操作,判断用户是如何启动Form2窗体的，根据不同的启动原因，执行不同的操作
-        // 这里有一个让人疑惑的地方:
-        // 新建（或编辑，编辑不确定）变量，如果变量名为空，点击保存按钮，会将值写入新建按钮所属listView的第一项
-        // 尽管我设置了变量名和变量值同时不为空时保存按钮才可选，由此避免了这种现象的发生，但是我还是想知道原因
+        //
         private void buttonSaveChange_Click(object sender, EventArgs e)
         {
 

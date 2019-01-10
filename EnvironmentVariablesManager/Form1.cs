@@ -313,14 +313,13 @@ namespace EnvironmentVariablesManager
 //------------------------------------------------------------------------------
 
         // 单击 btnUserDel 按钮时触发
-        // 这个方法还不够完善，应在删除完一项后，自动定位下一项
-        // 如果该项不是第一项，就往前删，如果是第一项，就往后删除
-        // 当所有项都已经删除完成，将编辑按钮和删除按钮设置为不可选中
         private void Del_listViewUserItem(object sender, EventArgs e)
         {
+            int selectedItemIndex = 0;
             ListView.SelectedIndexCollection sel = this.listViewUser.SelectedIndices;
             if (sel.Count != 0)
             {
+                selectedItemIndex = this.listViewUser.Items[sel[0]].Index;
                 this.listViewUser.Items[sel[0]].Remove();
 
                 GlobalData.listViewUserChanged = true;
@@ -333,19 +332,32 @@ namespace EnvironmentVariablesManager
                 this.btnUserEdit.Enabled = false;
             }
 
+            if(this.listViewUser.TopItem == this.listViewUser.FocusedItem)
+            {
+                if(this.listViewUser.Items.Count !=0)
+                {
+                this.listViewUser.Items[0].Selected = true;
+                }
+            }
+            else
+            {
+                this.listViewUser.Items[(selectedItemIndex -1)].Selected = true;
+            }
+
+            this.listViewUser.Select();
+
         }
 
 //------------------------------------------------------------------------------
 
         // 单击 btnSysDel 按钮时触发
-        // 这个方法还不够完善，应在删除完一项后，自动定位下一项或上一项
-        // 如果该项不是第一项，就往前删，如果是第一项，就往后删除
-        // 当所有项都已经删除完成，将编辑按钮和删除按钮设置为不可选中
         private void Del_listViewSystemItem(object sender, EventArgs e)
         {
+            int selectedItemIndex = 0;
             ListView.SelectedIndexCollection sel = this.listViewSystem.SelectedIndices;
-            if(sel.Count != 0)
+            if (sel.Count != 0)
             {
+                selectedItemIndex = this.listViewSystem.Items[sel[0]].Index;
                 this.listViewSystem.Items[sel[0]].Remove();
 
                 GlobalData.listViewSystemChanged = true;
@@ -358,6 +370,21 @@ namespace EnvironmentVariablesManager
                 this.btnSysEdit.Enabled = false;
             }
 
+            // 删除item时决断当前获得焦点的item是不是第一项item
+            // 如果是，则继续选中第一项，如果不是，则选中前一项
+            if (this.listViewSystem.TopItem == this.listViewSystem.FocusedItem)
+            {
+                if (this.listViewSystem.Items.Count != 0)
+                {
+                    this.listViewSystem.Items[0].Selected = true;
+                }
+            }
+            else
+            {
+                this.listViewSystem.Items[(selectedItemIndex - 1)].Selected = true;
+            }
+
+            this.listViewSystem.Select();
         }
 
 //------------------------------------------------------------------------------
@@ -404,13 +431,9 @@ namespace EnvironmentVariablesManager
                     }
                     GlobalData.listViewSystemChanged = false;
                 }
-                catch (SecurityException ex)
+                catch (Exception)
                 {
-                    MessageBox.Show("抱歉，操作失败！\r\n修改系统环境变量需要管理员权限（但是修改用户变量不需要），请以管理员身份运行此软件！", "错误提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                catch (Exception ex2)
-                {
-                    MessageBox.Show("出现未知错误，操作失败！\r\n以下是错误详情:\r\n｛0｝", ex2.Message);
+                    MessageBox.Show("抱歉，权限不足。\r\n要修改系统环境变量，请以管理员身份运行此软件！", "出错啦", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
 
@@ -433,7 +456,7 @@ namespace EnvironmentVariablesManager
 
         private void buttonAbout_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("欢迎使用：变量大湿(v2.5）。\r\n请将软件运行错误或改进意见反馈至开发者邮箱，帮助改进此软件：\r\nuanaoeng@outlook.com\r\n\r\n变量大湿是开源软件，项目地址为：\r\nhttp://github.com/uanaoeng/EnvironmentVariableMaster");
+            MessageBox.Show("欢迎使用：变量大湿(v2.6）。\r\n请将软件运行错误或改进意见反馈至开发者邮箱，帮助改进此软件：\r\nuanaoeng@outlook.com\r\n\r\n变量大湿是开源软件，项目地址为：\r\nhttp://github.com/uanaoeng/EnvironmentVariableMaster");
         }
 
 //------------------------------------------------------------------------------
@@ -466,9 +489,11 @@ namespace EnvironmentVariablesManager
             {
                 // 这段代码就是上面btnUserDel按钮按下时触发的方法，写在这里感觉重复了
                 // 不知道有没办法直接调用？
+                int selectedItemIndex = 0;
                 ListView.SelectedIndexCollection sel = this.listViewUser.SelectedIndices;
                 if (sel.Count != 0)
                 {
+                    selectedItemIndex = this.listViewUser.Items[sel[0]].Index;
                     this.listViewUser.Items[sel[0]].Remove();
 
                     GlobalData.listViewUserChanged = true;
@@ -480,6 +505,20 @@ namespace EnvironmentVariablesManager
                     this.btnUserDel.Enabled = false;
                     this.btnUserEdit.Enabled = false;
                 }
+
+                if (this.listViewUser.TopItem == this.listViewUser.FocusedItem)
+                {
+                    if (this.listViewUser.Items.Count != 0)
+                    {
+                        this.listViewUser.Items[0].Selected = true;
+                    }
+                }
+                else
+                {
+                    this.listViewUser.Items[(selectedItemIndex - 1)].Selected = true;
+                }
+
+                this.listViewUser.Select();
             }
 
         }
@@ -512,9 +551,11 @@ namespace EnvironmentVariablesManager
             }
             if (e.KeyCode == Keys.Delete)
             {
+                int selectedItemIndex = 0;
                 ListView.SelectedIndexCollection sel = this.listViewSystem.SelectedIndices;
                 if (sel.Count != 0)
                 {
+                    selectedItemIndex = this.listViewSystem.Items[sel[0]].Index;
                     this.listViewSystem.Items[sel[0]].Remove();
 
                     GlobalData.listViewSystemChanged = true;
@@ -526,6 +567,20 @@ namespace EnvironmentVariablesManager
                     this.btnSysDel.Enabled = false;
                     this.btnSysEdit.Enabled = false;
                 }
+
+                if (this.listViewSystem.TopItem == this.listViewSystem.FocusedItem)
+                {
+                    if (this.listViewSystem.Items.Count != 0)
+                    {
+                        this.listViewSystem.Items[0].Selected = true;
+                    }
+                }
+                else
+                {
+                    this.listViewSystem.Items[(selectedItemIndex - 1)].Selected = true;
+                }
+
+                this.listViewSystem.Select();
             }
         }
 
